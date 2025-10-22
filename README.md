@@ -1,3 +1,6 @@
+🔗 **Live Demo:**  
+[https://あなたのユーザー名.github.io/four-seasons-focus-timer/](https://あなたのユーザー名.github.io/four-seasons-focus-timer/)
+
 # 🌸☀️🍁❄️ 四季のフォーカスタイマー | KK_Scent
 
 Lo-fi × 癒し × 習慣づくり  
@@ -37,13 +40,14 @@ spring_lofi_2.mp3
 spring_lofi_3.mp3
 ```
 🌸 **Spring Tracks**
-- spring_lofi_1.mp3：明るくかわいい春色Lo-fi  
-- spring_lofi_2.mp3：穏やかな集中タイプ  
-- spring_lofi_3.mp3：軽やかで爽やかなテンポ  
+- spring_lofi_1.mp3：**Bloom Waltz**（やさしい春風のワルツ）  
+- spring_lofi_2.mp3：**Sakura Dream**（桜の下の午後）  
+- spring_lofi_3.mp3：**Morning Dew**（朝露の輝き）  
 
 ---
 
-###  ☀️夏（Summer）
+### 🌞 夏（Summer）
+
 ```
 assets/
 summer/
@@ -51,11 +55,10 @@ summer_lofi_1.mp3
 summer_lofi_2.mp3
 summer_lofi_3.mp3
 ```
-☀️ **Summer Tracks**
-- summer_lofi_1.mp3：海風のように爽やかなLo-fi  
-- summer_lofi_2.mp3：ゆったりリラックス系  
-- summer_lofi_3.mp3：波音とウクレレの夏の音  
-
+🌞 **Summer Tracks**
+- summer_lofi_1.mp3：**Sea Breeze**（海風の午後）  
+- summer_lofi_2.mp3：**Lemon Soda**（はじける夏の午後）  
+- summer_lofi_3.mp3：**Blue Horizon**（夏の終わりの静けさ）  
 ---
 
 ### 🍁 秋（Autumn）
@@ -67,9 +70,9 @@ autumn_lofi_2.mp3
 autumn_lofi_3.mp3
 ```
 🍁 **Autumn Tracks**  
-- autumn_lofi_1.mp3：Acorn Dance（かわいい明るめ）  
-- autumn_lofi_2.mp3：Gentle Leaves（落ち着きタイプ）  
-- autumn_lofi_3.mp3：Forest Playtime（楽しいテンポ）  
+- autumn_lofi_1.mp3：**Acorn Dance**（かわいい明るめ）  
+- autumn_lofi_2.mp3：**Gentle Leaves**（落ち着きタイプ）  
+- autumn_lofi_3.mp3：**Forest Playtime**（楽しいテンポ）  
 
 ---
 
@@ -82,12 +85,11 @@ winter_lofi_2.mp3
 winter_lofi_3.mp3
 ```
 ❄️ **Winter Tracks**  
-- winter_lofi_1.mp3：雪の夜をイメージした静かなBGM  
-- winter_lofi_2.mp3：ピアノ中心のアンビエントLo-fi  
-- winter_lofi_3.mp3：温もりのある穏やかな曲  
+- winter_lofi_1.mp3：**Snow Twinkle**（静かな透明感のある雪の夜）  
+- winter_lofi_2.mp3：**Cozy Hearth**（暖かい室内のぬくもり）  
+- winter_lofi_3.mp3：**Frosty Morning**（澄んだ朝の希望を感じる曲）  
 
 ---
 
-🎧 Produced by **KK_Scent**  
-All tracks are original lo-fi compositions created with [SunoAI](https://suno.com/).  
-
+🎧 All tracks composed and produced by **KK_Scent**  
+Generated with [SunoAI](https://suno.com/) and arranged for the *Four Seasons Focus Timer* series.
