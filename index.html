@@ -1,50 +1,227 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <!-- 🔤 基本設定 -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 基本 -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- 🌸 タイトル -->
+  <!-- タイトル -->
   <title>四季のフォーカスタイマー | KK_Scent</title>
 
-  <!-- 🍃 ファビコン -->
-  <link rel="icon" href="assets/icon.png">
+  <!-- Favicon / OGP -->
+  <link rel="icon" href="assets/icon.png" />
+  <meta name="description" content="かわいい季節のBGMで、癒しと集中の時間を。SunoAIで作曲した四季の音が流れるフォーカスタイマー。" />
+  <meta property="og:title" content="四季のフォーカスタイマー | KK_Scent" />
+  <meta property="og:description" content="かわいい季節のBGMで、癒しと集中の時間を。SunoAIで作曲した四季の音が流れるタイマー。" />
+  <meta property="og:image" content="assets/og-cover.png" />
+  <meta property="og:url" content="https://kk-scent.github.io/four-seasons-focus-timer/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- 🪴 ページ説明 -->
-  <meta name="description" content="かわいい季節のBGMで、癒しと集中の時間を。SunoAIで作曲した四季の音が流れるフォーカスタイマー。">
-
-  <!-- 🌷 OGP（SNS共有時） -->
-  <meta property="og:title" content="四季のフォーカスタイマー | KK_Scent">
-  <meta property="og:description" content="かわいい季節のBGMで、癒しと集中の時間を。SunoAIで作曲した四季の音が流れるタイマー。">
-  <meta property="og:image" content="assets/og-cover.png">
-  <meta property="og:url" content="https://kk-scent.github.io/four-seasons-focus-timer/">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <!-- 🧩 フォント・スタイル（任意） -->
+  <!-- Webフォント（好みで外してOK） -->
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
 
+  <!-- CSS（内蔵） -->
+  <style>
+    :root{
+      --bg:#f6efe8; --panel:#fff4ea; --text:#3b2f2f; --muted:#7c6a64;
+      --accent:#c6a58b; --chip:#f6e7db;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:"Zen Maru Gothic","Noto Sans JP",sans-serif;color:var(--text);background:var(--bg)}
+    header,footer{max-width:920px;margin:24px auto;padding:0 16px}
+    h1{font-size:32px;margin:16px 0}
+    footer{opacity:.8;font-size:14px}
+    .container{max-width:920px;margin:0 auto;padding:16px}
+    .card{background:var(--panel);border-radius:16px;box-shadow:0 6px 20px rgba(0,0,0,.06);padding:20px;margin:16px 0}
+    .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    select,button,input[type="range"]{
+      font:inherit;border:none;border-radius:12px;padding:10px 14px;background:#fff;color:var(--text);box-shadow:0 2px 10px rgba(0,0,0,.05)
+    }
+    button{cursor:pointer}
+    button.primary{background:var(--accent);color:#fff}
+    button.ghost{background:var(--chip)}
+    .timer{font-size:56px;letter-spacing:4px;text-align:center;margin:12px 0 8px}
+    .tabs button{padding:8px 12px}
+    .badge{padding:6px 10px;border-radius:999px;background:var(--chip);display:inline-block}
+    .stamps{display:flex;gap:8px;flex-wrap:wrap;font-size:28px}
+    .hr{height:1px;background:#eadfd7;margin:16px 0}
+    .small{font-size:12px;color:var(--muted)}
+  </style>
 </head>
 
 <body>
-  <!-- 🌼 ヘッダー -->
+  <!-- ヘッダー -->
   <header>
     <h1>四季のフォーカスタイマー</h1>
   </header>
 
-  <!-- ⏰ メインタイマーエリア -->
-  <main id="app">
-    <!-- JavaScriptで内容を生成 -->
-  </main>
+  <!-- メイン -->
+  <main id="app"></main>
 
-  <!-- 🎵 スクリプト -->
-  <script src="main.js"></script>
-
-  <!-- 🌿 フッター -->
+  <!-- フッター -->
   <footer>
     <p>© 2025 KK_Scent – 四季のフォーカスタイマー</p>
   </footer>
+
+  <!-- JS（内蔵） -->
+  <script>
+    // ===== Four Seasons Focus Timer | KK_Scent =====
+    const seasons = {
+      spring: { label: "春 🌸", emoji:"🌸", bgm: ["spring_lofi_1.mp3","spring_lofi_2.mp3","spring_lofi_3.mp3"] },
+      summer: { label: "夏 🌞", emoji:"🌞", bgm: ["summer_lofi_1.mp3","summer_lofi_2.mp3","summer_lofi_3.mp3"] },
+      autumn: { label: "秋 🍁", emoji:"🍁", bgm: ["autumn_lofi_1.mp3","autumn_lofi_2.mp3","autumn_lofi_3.mp3"] },
+      winter: { label: "冬 ⛄", emoji:"⛄", bgm: ["winter_lofi_1.mp3","winter_lofi_2.mp3","winter_lofi_3.mp3"] }
+    };
+
+    const el = (tag, attrs={}, ...children)=>{
+      const n = document.createElement(tag);
+      Object.entries(attrs).forEach(([k,v])=>{
+        if(k==="class") n.className=v;
+        else if(k==="html") n.innerHTML=v;
+        else n.setAttribute(k,v);
+      });
+      children.forEach(c=> n.append(c));
+      return n;
+    };
+
+    let state = { season: "autumn", seconds: 0, running: false, intervalId: null, selectedBgmIndex: 0 };
+
+    function fmt(sec){
+      const m = Math.floor(sec/60).toString().padStart(2,"0");
+      const s = Math.floor(sec%60).toString().padStart(2,"0");
+      return `${m}:${s}`;
+    }
+    function loadStamps(season){ try{ return JSON.parse(localStorage.getItem(`stamps_${season}`)||"[]"); }catch{ return []; } }
+    function saveStamps(season, arr){ localStorage.setItem(`stamps_${season}`, JSON.stringify(arr)); }
+
+    function buildApp(){
+      const app = document.getElementById("app"); app.innerHTML = "";
+      const container = el("div",{class:"container"});
+
+      // Season select
+      const seasonSel = el("select");
+      Object.entries(seasons).forEach(([key,info])=>{
+        const opt = el("option",{value:key}); opt.textContent = info.label;
+        if(key===state.season) opt.selected = true; seasonSel.append(opt);
+      });
+
+      // Tabs
+      const tabs = el("div",{class:"row tabs"},
+        el("button",{class:"ghost", id:"tab-focus"},"25分 集中"),
+        el("button",{class:"ghost", id:"tab-break"},"5分 休憩"),
+        el("button",{class:"ghost", id:"tab-custom"},"カスタム")
+      );
+
+      // Timer
+      const timeView = el("div",{class:"timer"}, fmt(state.seconds));
+
+      // Controls
+      const btnStart = el("button",{class:"primary"},"開始");
+      const btnPause = el("button",{class:"ghost"},"一時停止");
+      const btnReset = el("button",{class:"ghost"},"リセット");
+      const controls = el("div",{class:"row"}, btnStart, btnPause, btnReset);
+
+      // Custom range
+      const customWrap = el("div",{class:"card"},
+        el("div",{},"カスタム分数"),
+        el("input",{type:"range",min:"1",max:"120",value:"25",id:"range"}),
+        el("div",{class:"small",id:"rangeLabel"},"25分")
+      );
+
+      // BGM select
+      const bgmSel = el("select",{id:"bgm"});
+      const bgmNote = el("div",{class:"small"},"BGMは assets/<season>/ 内の mp3 を読み込みます。");
+      const audio = el("audio",{id:"player"});
+      const bgmCard = el("div",{class:"card"}, el("div",{},"BGMを選択"), bgmSel, bgmNote);
+
+      // Stamps
+      const stampsWrap = el("div",{class:"card"},
+        el("div",{},"ごほうびスタンプ"),
+        el("div",{class:"stamps", id:"stamps"})
+      );
+
+      // mount
+      container.append(
+        el("div",{class:"card"},
+          el("div",{class:"row"}, el("div",{class:"badge"},"季節："), seasonSel),
+          tabs, timeView, controls, customWrap
+        ),
+        bgmCard, el("div",{class:"hr"}), stampsWrap, audio
+      );
+      app.append(container);
+
+      // helpers
+      function refreshBgmOptions(){
+        bgmSel.innerHTML = "";
+        const labels = {
+          spring:["春色フォーカス 1","春色フォーカス 2","春色フォーカス 3"],
+          summer:["夏色フォーカス 1","夏色フォーカス 2","夏色フォーカス 3"],
+          autumn:["秋色フォーカスタイマー 1","秋色フォーカスタイマー 2","秋色フォーカスタイマー 3"],
+          winter:["冬色フォーカス 1","冬色フォーカス 2","冬色フォーカス 3"],
+        }[state.season];
+
+        seasons[state.season].bgm.forEach((f,i)=>{
+          const opt = el("option",{value:i}); opt.textContent = labels[i];
+          if(i===state.selectedBgmIndex) opt.selected = true; bgmSel.append(opt);
+        });
+      }
+      function loadAudio(){
+        const file = seasons[state.season].bgm[state.selectedBgmIndex];
+        audio.src = `assets/${state.season}/${file}`;
+        audio.loop = true;
+      }
+      function renderTime(){ timeView.textContent = fmt(state.seconds); }
+      function renderStamps(){
+        const box = document.getElementById("stamps"); box.innerHTML = "";
+        loadStamps(state.season).forEach(()=> box.append("🌿"));
+      }
+
+      // events
+      seasonSel.addEventListener("change", ()=>{
+        state.season = seasonSel.value; state.selectedBgmIndex = 0;
+        refreshBgmOptions(); loadAudio(); renderStamps();
+      });
+      bgmSel.addEventListener("change", ()=>{
+        state.selectedBgmIndex = Number(bgmSel.value); loadAudio();
+      });
+      document.getElementById("tab-focus").addEventListener("click", ()=>{ state.seconds=25*60; renderTime(); });
+      document.getElementById("tab-break").addEventListener("click", ()=>{ state.seconds=5*60; renderTime(); });
+      document.getElementById("tab-custom").addEventListener("click", ()=>{
+        const v = Number(document.getElementById("range").value)||25; state.seconds=v*60; renderTime();
+      });
+      document.getElementById("range").addEventListener("input",(e)=>{
+        document.getElementById("rangeLabel").textContent = `${e.target.value}分`;
+      });
+
+      let tick = ()=>{};
+      btnStart.addEventListener("click", ()=>{
+        if(state.running) return;
+        state.running = true;
+        if(audio.src) audio.play().catch(()=>{});
+        state.intervalId = setInterval(()=>{
+          state.seconds = Math.max(0, state.seconds-1); renderTime();
+          if(state.seconds===0){
+            clearInterval(state.intervalId); state.running=false;
+            audio.pause(); alert("おつかれさま！");
+            const s = loadStamps(state.season); s.push(Date.now()); saveStamps(state.season,s); renderStamps();
+          }
+        },1000);
+      });
+      btnPause.addEventListener("click", ()=>{
+        if(state.intervalId){ clearInterval(state.intervalId); state.intervalId=null; }
+        state.running=false; audio.pause();
+      });
+      btnReset.addEventListener("click", ()=>{
+        if(state.intervalId){ clearInterval(state.intervalId); state.intervalId=null; }
+        state.running=false; state.seconds=0; renderTime(); audio.pause(); audio.currentTime=0;
+      });
+
+      // init
+      state.seconds = 0; refreshBgmOptions(); loadAudio(); renderTime(); renderStamps();
+    }
+
+    document.addEventListener("DOMContentLoaded", buildApp);
+  </script>
 </body>
 </html>
