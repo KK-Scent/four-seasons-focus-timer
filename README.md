@@ -1,5 +1,5 @@
 🔗 **Live Demo:**  
-[https://kk-scent.github.io/four-seasons-focus-timer/](https://あなたのユーザー名.github.io/four-seasons-focus-timer/)
+[https://kk-scent.github.io/four-seasons-focus-timer/](https://kk-scent.github.io/four-seasons-focus-timer/)
 
 # 🌸☀️🍁❄️ 四季のフォーカスタイマー | KK_Scent
 
